@@ -27,7 +27,9 @@ public class ContextLoaderListener implements ServletContextListener{
 			HubDao hubDao = new HubDao();
 			hubDao.setDataSource(ds);
 			
-			sc.setAttribute("memberDao", hubDao);
+			sc.setAttribute("hubDao", hubDao);
+			
+			System.out.println("ContextLoaderListener -> contextInitialized");
 			
 		} catch (Throwable e) {
 			e.printStackTrace();

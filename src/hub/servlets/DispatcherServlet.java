@@ -12,10 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hub.controls.Controller;
+import hub.controls.LoginController;
+import hub.vo.User;
 
 
 @WebServlet("*.do")
 public class DispatcherServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -33,7 +40,16 @@ public class DispatcherServlet extends HttpServlet {
 			Controller pageController = null;
 			
 			//
-			
+			if ("/main.do".equals(servletPath)) {
+//				pageController = new MemberListController();
+			} else if ("/auth/login.do".equals(servletPath)) {
+				pageController = new LoginController();
+				if (request.getParameter("id") != null) {
+					model.put("loginInfo", new User()
+						.setId(request.getParameter("id"))
+						.setPassword(request.getParameter("password")));
+				}
+			}
 			
 			String viewUrl = pageController.execute(model);
 			
