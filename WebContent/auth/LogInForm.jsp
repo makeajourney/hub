@@ -15,10 +15,10 @@
     <body>
         <div class="sign-container">
             <h1>Hub</h1>
-            <form action="">
-                <input type="text" id="id-form" class="input-form" />
-                <input type="password" id="password-form" class="input-form" />
-                <input type="password" id="password-form2" class="input-form" />
+            <form action="login.do" method="post">
+                <input type="text" id="id" class="input-form" />
+                <input type="password" id="password" class="input-form" />
+                <input type="password" id="password2" class="input-form" />
                 <input type="submit" id="sign-button" value="LOGIN"/>
             </form>
         </div>
