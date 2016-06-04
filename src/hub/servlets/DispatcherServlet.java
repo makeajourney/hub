@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import hub.controls.Controller;
 import hub.controls.LoginController;
+import hub.controls.LogoutController;
+import hub.controls.MainController;
 import hub.vo.User;
 
 
@@ -41,7 +43,7 @@ public class DispatcherServlet extends HttpServlet {
 			
 			//
 			if ("/main.do".equals(servletPath)) {
-//				pageController = new MemberListController();
+				pageController = new MainController();
 			} else if ("/auth/login.do".equals(servletPath)) {
 				pageController = new LoginController();
 				if (request.getParameter("id") != null) {
@@ -49,6 +51,8 @@ public class DispatcherServlet extends HttpServlet {
 						.setId(request.getParameter("id"))
 						.setPassword(request.getParameter("password")));
 				}
+			} else if ("/auth/logout.do".equals(servletPath)) {
+				pageController = new LogoutController();
 			}
 			
 			String viewUrl = pageController.execute(model);
