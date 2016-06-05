@@ -10,18 +10,30 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <script type="text/javascript" src="../js/lib/jquery-2.2.4.js"></script>
-        <script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>
-        
         <link rel="stylesheet" type="text/css" href="../css/lib/bootstrap-theme.min.css">
         <link rel="stylesheet" type="text/css" href="../css/main.css">
         
         <title>Hub</title>
     </head>
     <body>
+    
+        <div class="modal">
+            <div class="personal-modify">
+                <input type="text" class="keyword-form" />
+                <span class="personal-modify-close">X</span>
+                <ul class="keyword-list">
+                    <li class="keyword">keyword1</li>
+                    <li class="keyword">keyword2</li>
+                    <li class="keyword">keyword3</li>
+                    <li class="keyword">keyword4</li>
+                </ul>
+                <div class="ok-button">확인</div>
+            </div>
+        </div>
+    
         <header>
             ${user.id}
-            <span>정보 수정</span>
+            <span id="personal-modify-button">정보 수정</span>
             <span>로그 아웃</span>            
         </header>
         <div class="board-container">
@@ -78,6 +90,12 @@
                     </tbody>
                 </table>
             </div>
+        </div>
         <footer></footer>
+        
+        <script type="text/javascript" src="../js/lib/jquery-2.2.4.js"></script>
+        <script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../js/main.js"></script>
+        
     </body>
 </html>
