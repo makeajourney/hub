@@ -22,9 +22,10 @@ $(".personal-modify-close").click(function() {
 /*
  * keyword 클릭시 삭제
  */
-$(".keyword").click(function() {
-    this.remove();
+$(".keyword-list").on("click", ".keyword", function(){
+    $(this).remove();
 });
+
 
 $(".keyword-form").keyup(function(event) {
     if (event.which === 13) {
