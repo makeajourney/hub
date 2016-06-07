@@ -32,8 +32,8 @@
         </div>
     
         <header>
-            ${user.id}
-            <span id="personal-modify-button">정보 수정</span>
+            <span id="title"><a href="#">Hub</a></span>
+            <span class="personal-modify-button">정보 수정</span>
             <span>로그 아웃</span>            
         </header>
         <div class="board-container">
@@ -91,7 +91,9 @@
                 </table>
             </div>
         </div>
-        <footer></footer>
+        <footer>
+            <h1 class="footer-title">Hub</h1>
+        </footer>
         
         <script type="text/javascript" src="../js/lib/jquery-2.2.4.js"></script>
         <script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>

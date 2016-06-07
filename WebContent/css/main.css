@@ -7,25 +7,40 @@ header {
     width: calc(100% - 24px);
     height: 40px;
     line-height: 40px;
-    background-color: blue;
-    position: relative;
+    background-color: black;
+    position: fixed;
     text-align: right;
     padding: 0 20px;
-    top: -8px;
+    top: 0px;
     left: -8px;
+    color: white;
+    opacity: 0.4;
+}
+
+#title {
+    font-family: 'Pacifico', cursive;
+    float: left;
+    font-size: 25px;
+}
+
+#title > a, #title > a:hover, #title > a:active, #title > a:visited, #title > a:link {
+    text-decoration: none;
+    color: white;
 }
 
 header > span {
     cursor: pointer;
+    margin: 0 5px;
 }
 
 body {
-    background-color: #E0E0E0;
+    background-color: #F1F1F1;
 }
 
 .board-container {
     width: 100%;
-    min-height: 800px;
+    min-height: 676px;
+    margin-top: 48px;
 }
 
 .board-card {
@@ -39,6 +54,7 @@ body {
 
 .keyword-name {
     margin: 10px;
+    color: #E89600;
 }
 
 .post-list {
@@ -55,11 +71,20 @@ body {
 
 footer {
     width: calc(100% + 16px);
-    height: 250px;
+    height: 200px;
     position: relative;
     left: -8px;
     bottom: -8px;
-    background-color: red;
+    background-color: #4b4b4b;
+}
+
+.footer-title {
+    font-family: 'Pacifico', cursive;
+    display: inline-block;
+    margin: 0 70px;
+    line-height: 200px;
+    color: #9A9A9A;
+    font-size: 70px;
 }
 
 .modal {
