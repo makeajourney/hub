@@ -3,7 +3,7 @@
 /*
  * modal 관련한 함수
  */
-$("#personal-modify-button").click(function() {
+$(".personal-modify-button").click(function() {
     $(".modal").css("display", "block");
     $(".keyword-form").focus();
 });
