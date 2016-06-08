@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import hub.vo.Article;
 import hub.vo.Keyword;
 import hub.vo.User;
 
@@ -59,8 +61,8 @@ public class HubDao {
 		try {
 			connection = ds.getConnection();
 			stmt = connection.prepareStatement(
-					"SELECT WORD FROM KEYWORD K,USER_KEYWORD UK" +
-					" WHERE K.NO = UK.NO AND UK.NO = (SELECT NO FROM USER WHERE ID=?)");
+					"SELECT K.NO, K.WORD FROM KEYWORD K,USER_KEYWORD UK" +
+					" WHERE K.NO = UK.KEYWORD_NO AND UK.USER_NO = (SELECT NO FROM USER WHERE ID=?)");
 			stmt.setString(1, id);
 			rs = stmt.executeQuery();
 			
@@ -68,9 +70,52 @@ public class HubDao {
 			
 			while (rs.next()) {
 				keywords.add(new Keyword()
-						.setWord(rs.getString("KEYWORD")));
+						.setNo(Integer.parseInt(rs.getString("K.NO")))
+						.setWord(rs.getString("K.WORD")));
 			}
 			return keywords;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try { if (rs != null) rs.close();} catch(Exception e) {}
+			try { if (stmt != null) stmt.close();} catch(Exception e) {}
+			try { if (connection != null) connection.close(); } catch (Exception e) {}
+		}
+	}
+	
+	public void getArticle(Keyword keyword, ArrayList<Article> articles) throws Exception {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		
+		/*
+		 * 	protected int no;
+	protected String title;
+	protected String url;
+	protected String content;
+	protected Date postTime;
+		 */
+		try {
+			Date date = new Date(0,0,0,0,0,0);
+			connection = ds.getConnection();
+			stmt = connection.prepareStatement(
+					"SELECT A.NO, A.TITLE, A.URL, A.POST_TIME FROM ARTICLE A, ARTICLE_KEYWORD AK" +
+					" WHERE A.NO = AK.ARTICLE_NO AND A.POST_TIME AND AK.KEYWORD_NO = ?");
+			stmt.setInt(1, keyword.getNo());
+			
+			System.out.println(stmt.toString());
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				articles.add(new Article()
+						.setNo(Integer.parseInt(rs.getString("A.NO")))
+						.setTitle(rs.getString("A.TITLE"))
+						.setUrl(rs.getString("A.URL"))
+						.setPostTime(rs.getDate("A.POST_TIME"))
+						.setKeywordNo(keyword.getNo()));
+				System.out.println(rs.toString());
+			}
 		} catch (Exception e) {
 			throw e;
 		} finally {

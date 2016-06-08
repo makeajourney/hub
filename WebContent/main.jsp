@@ -1,4 +1,3 @@
-<%@ page import="hub.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -22,10 +21,9 @@
                 <input type="text" class="keyword-form" />
                 <span class="personal-modify-close">X</span>
                 <ul class="keyword-list">
-                    <li class="keyword">keyword1</li>
-                    <li class="keyword">keyword2</li>
-                    <li class="keyword">keyword3</li>
-                    <li class="keyword">keyword4</li>
+                	<c:forEach var="keyword" items="${keywords }">
+                    	<li class="keyword">${keyword.word }</li>
+                    </c:forEach>
                 </ul>
                 <div class="ok-button">확인</div>
             </div>
@@ -37,8 +35,9 @@
             <span><a href="${pageContext.request.contextPath }/auth/logout.do">logout</a></span>            
         </header>
         <div class="board-container">
+        	<c:forEach var="keyword" items="${keywords }">
             <div class="board-card">
-                <h1 class="keyword-name">키워드</h1>
+                <h1 class="keyword-name">${keyword.word }</h1>
                 <table class="post-list">
                     <thead>
                         <tr>
@@ -47,49 +46,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>뭘까요 ~1</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~2</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~3</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~4</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~5</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~6</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~7</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~8</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~9</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
-                        <tr>
-                            <td>뭘까요 ~10</td>
-                            <td>HH:MM:SS</td>
-                        </tr>
+                    	<c:forEach var="article" items="${articles }">
+                    		<c:if test="${keyword.no == article.keywordNo }" >
+	                        <tr>
+	                            <td><a href="${article.url }">${article.title }</a></td>
+	                            <td>${article.postTime }</td>
+	                        </tr>
+	                        </c:if>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
+            </c:forEach>
         </div>
         <footer>
             <h1 class="footer-title">Hub</h1>

@@ -17,7 +17,7 @@ public class Article {
 	protected String content;
 	protected Date postTime;
 	protected int boardNo;
-	
+	protected int keywordNo;
 	
 	public int getNo() {
 		return no;
@@ -59,6 +59,13 @@ public class Article {
 	}
 	public Article setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
+		return this;
+	}
+	public int getKeywordNo() {
+		return keywordNo;
+	}
+	public Article setKeywordNo(int keywordNo) {
+		this.keywordNo = keywordNo;
 		return this;
 	}
 }
