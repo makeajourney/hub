@@ -34,7 +34,7 @@
         <header>
             <span id="title"><a href="#">Hub</a></span>
             <span class="personal-modify-button">정보 수정</span>
-            <span>로그 아웃</span>            
+            <span><a href="${pageContext.request.contextPath }/auth/logout.do">logout</a></span>            
         </header>
         <div class="board-container">
             <div class="board-card">
@@ -95,9 +95,9 @@
             <h1 class="footer-title">Hub</h1>
         </footer>
         
-        <script type="text/javascript" src="../js/lib/jquery-2.2.4.js"></script>
-        <script type="text/javascript" src="../js/lib/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../js/main.js"></script>
+        <script type="text/javascript" src="./js/lib/jquery-2.2.4.js"></script>
+        <script type="text/javascript" src="./js/lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./js/main.js"></script>
         
     </body>
 </html>
