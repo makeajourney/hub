@@ -48,6 +48,15 @@ var addKeyword = function() {
     $('.keyword-form')[0].value = "";
     
     //등록시 동작하는 ajax
+
+    $.post("/addUserKeyword.do",
+    {
+        keyword: value,
+    },
+    function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+
 }
 
 $(".personal-modify > .ok-button").click(function() {

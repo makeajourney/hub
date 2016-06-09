@@ -104,6 +104,57 @@ public class HubDao {
 		}
 	}
 	
+	public int addUserKeyword(User user, Keyword keyword) throws Exception {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+
+		try {
+			connection = ds.getConnection();
+			stmt = connection.prepareStatement(
+					"INSERT INTO USER_KEYWORD (USER_NO, KEYWORD_NO)"
+					+ " VALUES (?,?)");
+			stmt.setInt(1, user.getNo());
+			stmt.setInt(2, getKeywordNo(keyword).getNo());
+
+			return stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try {if (stmt != null) stmt.close();} catch(Exception e) {}
+			try {if (connection != null) connection.close(); } catch(Exception e) {}
+		}
+	}
+	
+	public Keyword getKeywordNo(Keyword keyword) throws Exception {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			connection = ds.getConnection();
+			stmt = connection.prepareStatement(
+					"SELECT KEYWORD, NO FROM KEYWORD WHERE WORD = ?");
+			stmt.setString(1, keyword.getWord());
+			
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				keyword.setNo(Integer.parseInt(rs.getString("NO")));
+				return keyword;
+			} else {				
+				return null;
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try { if (rs != null) rs.close();} catch(Exception e) {}
+			try { if (stmt != null) stmt.close();} catch(Exception e) {}
+			try { if (connection != null) connection.close(); } catch (Exception e) {}
+		}
+	}
+	
 	public void getArticle(Keyword keyword, ArrayList<Article> articles) throws Exception {
 		Connection connection = null;
 		PreparedStatement stmt = null;
@@ -125,7 +176,6 @@ public class HubDao {
 					" ORDER BY A.POST_TIME DESC LIMIT 8");
 			stmt.setInt(1, keyword.getNo());
 			
-			System.out.println(stmt.toString());
 			rs = stmt.executeQuery();
 			
 			while (rs.next()) {
@@ -145,4 +195,6 @@ public class HubDao {
 			try { if (connection != null) connection.close(); } catch (Exception e) {}
 		}
 	}
+	
+	
 }

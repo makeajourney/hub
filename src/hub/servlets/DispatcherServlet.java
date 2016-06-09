@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hub.controls.AddUserKeywordAjaxController;
 import hub.controls.Controller;
 import hub.controls.LoginController;
 import hub.controls.LogoutController;
 import hub.controls.MainController;
+import hub.vo.Keyword;
 import hub.vo.User;
 
 
@@ -44,7 +46,14 @@ public class DispatcherServlet extends HttpServlet {
 			//
 			if ("/main.do".equals(servletPath)) {
 				pageController = new MainController();
-			} else if ("/auth/login.do".equals(servletPath)) {
+			} else if ("/addUserKeyword.do".equals(servletPath)) {
+				pageController = new AddUserKeywordAjaxController();
+				if(request.getParameter("keyword") != null) {
+					model.put("keyword", new Keyword()
+							.setWord(request.getParameter("keyword")));
+				}
+			}
+			else if ("/auth/login.do".equals(servletPath)) {
 				pageController = new LoginController();
 				if (request.getParameter("id") != null) {
 					model.put("loginInfo", new User()
