@@ -50,3 +50,14 @@ body {
     letter-spacing: 6px;
     margin: 7px 0 0 0;
 }
+
+.toggle-button {
+    position: absolute;
+    right: 10px;
+    bottom: -25px;
+    color: grey;
+}
+
+.toggle-button:hover {
+    cursor: pointer;
+}
