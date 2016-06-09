@@ -57,9 +57,10 @@ var addKeyword = function() {
     //등록시 동작하는 ajax
 
     
-    $.ajax({url: "./addUserKeyword.do", 
+    $.ajax({
+    	url: "./addUserKeyword.do", 
     	data : {
-    		keyword : value
+    		keyword : encodeURIComponent( value  )
     	}, 
     	success: function(result){
     		alert(value + '가 추가되었습니다.');
