@@ -50,6 +50,7 @@ public class DispatcherServlet extends HttpServlet {
 					model.put("loginInfo", new User()
 						.setId(request.getParameter("id"))
 						.setPassword(request.getParameter("password")));
+					model.put("password2", request.getParameter("password2"));
 				}
 			} else if ("/auth/logout.do".equals(servletPath)) {
 				pageController = new LogoutController();

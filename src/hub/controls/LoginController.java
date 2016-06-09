@@ -14,20 +14,27 @@ public class LoginController implements Controller {
 		if (model.get("loginInfo") == null) { // 입력폼을 요청할 때
 			return "/auth/LogInForm.jsp";
 		
-		} else { // 회원 등록을 요청할 때
+		} else {
 			HubDao hubDao = (HubDao)model.get("hubDao"); 
 			User loginInfo = (User)model.get("loginInfo");
 			
-			User user = hubDao.exist(
-					loginInfo.getId(), 
-					loginInfo.getPassword());
-		  
-			if (user != null) {
-				HttpSession session = (HttpSession)model.get("session");
-				session.setAttribute("user", user);
-				return "redirect:../main.do";
+			// login 
+			if (model.get("password2") == null) {
+				User user = hubDao.exist(
+						loginInfo.getId(), 
+						loginInfo.getPassword());
+				
+				if (user != null) {
+					HttpSession session = (HttpSession)model.get("session");
+					session.setAttribute("user", user);
+					return "redirect:../main.do";
+				} else {
+					return "/auth/LogInFail.jsp";
+				}
 			} else {
-				return "/auth/LogInFail.jsp";
+				hubDao.signUp(loginInfo.getId(), loginInfo.getPassword());
+				
+				return "redirect:../auth/login.do";
 			}
 		}
 	}

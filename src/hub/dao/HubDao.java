@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -48,6 +47,28 @@ public class HubDao {
 		} finally {
 			try { if (rs != null) rs.close();} catch (Exception e){}
 			try { if (stmt != null) stmt.close();} catch (Exception e){}
+			try {if (connection != null) connection.close(); } catch(Exception e) {}
+		}
+	}
+	
+	public int signUp(String id, String password) throws Exception {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+
+		try {
+			connection = ds.getConnection();
+			stmt = connection.prepareStatement(
+					"INSERT INTO USER(ID, PASSWORD)"
+					+ " VALUES (?,?)");
+			stmt.setString(1, id);
+			stmt.setString(2, password);
+
+			return stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try {if (stmt != null) stmt.close();} catch(Exception e) {}
 			try {if (connection != null) connection.close(); } catch(Exception e) {}
 		}
 	}
