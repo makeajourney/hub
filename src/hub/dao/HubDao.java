@@ -141,6 +141,7 @@ public class HubDao {
 					"SELECT WORD, NO FROM KEYWORD WHERE WORD = ?");
 			stmt.setString(1, keyword.getWord());
 			
+			System.out.println(stmt.toString());
 			rs = stmt.executeQuery();
 			
 			if (rs.next()) {

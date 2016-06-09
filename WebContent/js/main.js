@@ -29,7 +29,17 @@ $(".personal-modify > .ok-button").click(function() {
 
 $(".keyword-list").on("click", ".keyword-delete-button", function(){
     // 삭제시 동작하는 ajax
-    
+	var value = this.previousSibling.data;
+	
+	$.ajax({
+    	url: "./deleteUserKeyword.do", 
+    	data : {
+    		keyword : encodeURIComponent( value  )
+    	}, 
+    	success: function(result){
+    		alert(value + '가 삭되었습니다.');
+    }});
+	
     this.parentElement.remove();
 });
 
