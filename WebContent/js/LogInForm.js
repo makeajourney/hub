@@ -8,6 +8,7 @@ $(document).ready(function(){
         } else {
             $(".toggle-button")[0].innerHTML = "Sign UP";
             $("#password-form2").css("display", "");
+            $("#password-form2")[0].value = "";
             $("#sign-button")[0].value = "LOGIN";
         }
     });
