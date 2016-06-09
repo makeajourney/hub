@@ -30,7 +30,7 @@ public class HubDao {
 		try {
 			connection = ds.getConnection();
 			stmt = connection.prepareStatement(
-					"SELECT ID FROM USER" +
+					"SELECT ID, NO FROM USER" +
 					" WHERE ID=? AND PASSWORD=?");
 			stmt.setString(1, id);
 			stmt.setString(2, password);
@@ -97,11 +97,11 @@ public class HubDao {
 	protected Date postTime;
 		 */
 		try {
-			Date date = new Date(0,0,0,0,0,0);
 			connection = ds.getConnection();
 			stmt = connection.prepareStatement(
 					"SELECT A.NO, A.TITLE, A.URL, A.POST_TIME FROM ARTICLE A, ARTICLE_KEYWORD AK" +
-					" WHERE A.NO = AK.ARTICLE_NO AND A.POST_TIME AND AK.KEYWORD_NO = ?");
+					" WHERE A.NO = AK.ARTICLE_NO AND A.POST_TIME AND AK.KEYWORD_NO = ?" +
+					" ORDER BY A.POST_TIME DESC LIMIT 8");
 			stmt.setInt(1, keyword.getNo());
 			
 			System.out.println(stmt.toString());
