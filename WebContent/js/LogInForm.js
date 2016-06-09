@@ -15,7 +15,7 @@ $(document).ready(function(){
 });
 
 function checkPassword() {
-	if (Document.getElementById('password-form').value == Document.getElementById('password-form2')) {
+	if (document.getElementById('password-form').value == document.getElementById('password-form2').value) {
 		return true; 
 	} else {
 		alert('Passwords are not equal. Please retry.');
