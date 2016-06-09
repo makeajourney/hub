@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import hub.controls.AddUserKeywordAjaxController;
 import hub.controls.Controller;
+import hub.controls.DeleteUserKeywordAjaxController;
 import hub.controls.LoginController;
 import hub.controls.LogoutController;
 import hub.controls.MainController;
@@ -49,6 +50,12 @@ public class DispatcherServlet extends HttpServlet {
 				pageController = new MainController();
 			} else if ("/addUserKeyword.do".equals(servletPath)) {
 				pageController = new AddUserKeywordAjaxController();
+				if(request.getParameter("keyword") != null) {
+					model.put("keyword", new Keyword()
+							.setWord(URLDecoder.decode(request.getParameter("keyword"))));
+				}
+			} else if ("/deleteUserKeyword.do".equals(servletPath)) {
+				pageController = new DeleteUserKeywordAjaxController();
 				if(request.getParameter("keyword") != null) {
 					model.put("keyword", new Keyword()
 							.setWord(URLDecoder.decode(request.getParameter("keyword"))));

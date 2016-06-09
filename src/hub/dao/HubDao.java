@@ -119,8 +119,6 @@ public class HubDao {
 					+ " VALUES (?,?)");
 			stmt.setInt(1, user.getNo());
 			stmt.setInt(2, temp.getNo());
-			
-			System.out.println(stmt.toString());
 
 			return stmt.executeUpdate();
 			
@@ -159,6 +157,29 @@ public class HubDao {
 			try { if (rs != null) rs.close();} catch(Exception e) {}
 			try { if (stmt != null) stmt.close();} catch(Exception e) {}
 			try { if (connection != null) connection.close(); } catch (Exception e) {}
+		}
+	}
+	
+	public int deleteUserKeyword(User user, Keyword keyword) throws Exception {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+		
+		Keyword temp = getKeywordNo(keyword);
+		
+		try {
+			connection = ds.getConnection();
+			stmt = connection.prepareStatement(
+					"DELETE FROM USER_KEYWORD"+ 
+					" WHERE USER_NO = ? AND KEYWORD_NO =?");
+			stmt.setInt(1, user.getNo());
+			stmt.setInt(2, temp.getNo());
+					
+			return stmt.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try { if (stmt != null) stmt.close();} catch(Exception e) {}
+			try {if (connection != null) connection.close(); } catch(Exception e) {}
 		}
 	}
 	
