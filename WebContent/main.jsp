@@ -18,11 +18,11 @@
     
         <div class="modal">
             <div class="personal-modify">
-                <input type="text" class="keyword-form" />
+                <input type="text" class="keyword-form" /><div class="add-button">추가</div>
                 <span class="personal-modify-close">X</span>
                 <ul class="keyword-list">
                 	<c:forEach var="keyword" items="${keywords }">
-                    	<li class="keyword">${keyword.word }</li>
+                    	<li class="keyword">${keyword.word }<span class="keyword-delete-button">x</span></li>
                     </c:forEach>
                 </ul>
                 <div class="ok-button">확인</div>

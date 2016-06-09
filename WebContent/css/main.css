@@ -23,6 +23,11 @@ header {
     font-size: 25px;
 }
 
+a, a:hover, a:active, a:link, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
 #title > a, #title > a:hover, #title > a:active, #title > a:visited, #title > a:link {
     text-decoration: none;
     color: white;
@@ -112,11 +117,12 @@ footer {
 }
 
 .keyword-form {
-    width: 70%;
+    width: 60%;
     height: 35px;
     margin-top: 40px;
     padding: 0 20px;
     font-size: 15px;
+    border: 1px solid #D2D2D2;
 }
 
 .personal-modify-close {
@@ -138,13 +144,41 @@ footer {
 .keyword-list li {
     list-style: none;
     display: inline-block;
-    cursor: pointer;
     border: 1px solid darkgrey;
     border-radius: 5px;
     padding: 2px 4px;
     margin: 1px;
-    background-color: grey;
+    background-color: #E89600;
     color: white;
+}
+
+li.keyword:hover .keyword-delete-button {
+    display: inline-block;
+}
+
+.keyword-delete-button {
+    display: none;
+    cursor: pointer;
+    position: relative;
+    background-color: red;
+    font-weight: bolder;
+    border-radius: 30px;
+    font-size: 15px;
+    line-height: 11px;
+    padding: 2px 4px;
+    margin: -8px;
+    top: -10px;
+    left: 5px;
+}
+
+.add-button {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 10px;
+    background: #E89600;
+    color: white;
+    margin: -1px;
+    height: 17px;
 }
 
 .ok-button {
