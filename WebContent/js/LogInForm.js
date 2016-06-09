@@ -19,6 +19,8 @@ function checkPassword() {
 		return true; 
 	} else {
 		alert('Passwords are not equal. Please retry.');
+		document.getElementById('password-form2').value = "";
+		document.getElementById('password-form').value = "";
 		return false;
 	}
 }
