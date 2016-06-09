@@ -35,7 +35,9 @@ public class HubDao {
 			stmt.setString(2, password);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
-				User user = new User().setId(rs.getString("ID"));
+				User user = new User()
+						.setId(rs.getString("ID"))
+						.setNo(Integer.parseInt(rs.getString("NO")));
 				return user;
 			}
 			else {
@@ -117,6 +119,8 @@ public class HubDao {
 					+ " VALUES (?,?)");
 			stmt.setInt(1, user.getNo());
 			stmt.setInt(2, temp.getNo());
+			
+			System.out.println(stmt.toString());
 
 			return stmt.executeUpdate();
 			

@@ -1,6 +1,7 @@
 package hub.servlets;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -50,7 +51,7 @@ public class DispatcherServlet extends HttpServlet {
 				pageController = new AddUserKeywordAjaxController();
 				if(request.getParameter("keyword") != null) {
 					model.put("keyword", new Keyword()
-							.setWord(request.getParameter("keyword")));
+							.setWord(URLDecoder.decode(request.getParameter("keyword"))));
 				}
 			}
 			else if ("/auth/login.do".equals(servletPath)) {
