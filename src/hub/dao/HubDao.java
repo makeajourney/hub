@@ -107,6 +107,8 @@ public class HubDao {
 	public int addUserKeyword(User user, Keyword keyword) throws Exception {
 		Connection connection = null;
 		PreparedStatement stmt = null;
+		
+		Keyword temp = getKeywordNo(keyword);
 
 		try {
 			connection = ds.getConnection();
@@ -114,7 +116,7 @@ public class HubDao {
 					"INSERT INTO USER_KEYWORD (USER_NO, KEYWORD_NO)"
 					+ " VALUES (?,?)");
 			stmt.setInt(1, user.getNo());
-			stmt.setInt(2, getKeywordNo(keyword).getNo());
+			stmt.setInt(2, temp.getNo());
 
 			return stmt.executeUpdate();
 			
@@ -134,13 +136,14 @@ public class HubDao {
 		try {
 			connection = ds.getConnection();
 			stmt = connection.prepareStatement(
-					"SELECT KEYWORD, NO FROM KEYWORD WHERE WORD = ?");
+					"SELECT WORD, NO FROM KEYWORD WHERE WORD = ?");
 			stmt.setString(1, keyword.getWord());
 			
 			rs = stmt.executeQuery();
 			
 			if (rs.next()) {
 				keyword.setNo(Integer.parseInt(rs.getString("NO")));
+				System.out.println(rs.getString("NO"));
 				return keyword;
 			} else {				
 				return null;

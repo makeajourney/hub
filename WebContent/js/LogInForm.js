@@ -15,12 +15,17 @@ $(document).ready(function(){
 });
 
 function checkPassword() {
-	if (document.getElementById('password-form').value == document.getElementById('password-form2').value) {
-		return true; 
-	} else {
-		alert('Passwords are not equal. Please retry.');
-		document.getElementById('password-form2').value = "";
-		document.getElementById('password-form').value = "";
-		return false;
+	var password1 = document.getElementById('password-form')
+	var password2 = document.getElementById('password-form2')
+	if (password2.value != "") {
+		if (password1.value == password2.value) {
+			return true; 
+		} else {
+			alert('Passwords are not equal. Please retry.');
+			password1 = "";
+			password2 = "";
+			return false;
+		}
 	}
+	
 }

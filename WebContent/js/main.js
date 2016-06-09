@@ -45,18 +45,19 @@ var addKeyword = function() {
     var span = $("<span></span>").text("x").attr("class", "keyword-delete-button");
     var li = $("<li></li>").text(value).attr("class", "keyword").append(span);
     $(".keyword-list").append(li);
-    $('.keyword-form')[0].value = "";
     
     //등록시 동작하는 ajax
 
-    $.post("/addUserKeyword.do",
-    {
-        keyword: value,
-    },
-    function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
+    
+    $.ajax({url: "./addUserKeyword.do", 
+    	data : {
+    		keyword : value
+    	}, 
+    	success: function(result){
+    		alert(value + '가 추가되었습니다.');
+    }});
 
+    $('.keyword-form')[0].value = "";
 }
 
 $(".personal-modify > .ok-button").click(function() {

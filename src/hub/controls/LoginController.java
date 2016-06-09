@@ -19,7 +19,7 @@ public class LoginController implements Controller {
 			User loginInfo = (User)model.get("loginInfo");
 			
 			// login 
-			if (model.get("password2") == null) {
+			if (model.get("password2") == "") {
 				User user = hubDao.exist(
 						loginInfo.getId(), 
 						loginInfo.getPassword());
