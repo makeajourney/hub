@@ -19,5 +19,6 @@ function checkPassword() {
 		return true; 
 	} else {
 		alert('Passwords are not equal. Please retry.');
+		return false;
 	}
 }
