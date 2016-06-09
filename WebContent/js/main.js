@@ -11,12 +11,20 @@ $(".personal-modify-button").click(function() {
 $(".modal").click(function(event) {
     if (event.target.className === this.className) {
         $(".modal").css("display", ""); 
+        $(location).attr('href', "./main.do");
     }
 });
 
 $(".personal-modify-close").click(function() {
    $(".modal").css("display", ""); 
+   $(location).attr('href', "./main.do");
 });
+
+$(".personal-modify > .ok-button").click(function() {
+    $(".modal").css("display", "");
+    $(location).attr('href', "./main.do");
+});
+
 /******************* 모달 관련 함수 끝 ********************/
 
 $(".keyword-list").on("click", ".keyword-delete-button", function(){
@@ -59,7 +67,3 @@ var addKeyword = function() {
 
     $('.keyword-form')[0].value = "";
 }
-
-$(".personal-modify > .ok-button").click(function() {
-    $(".modal").css("display", "");
-});
