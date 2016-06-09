@@ -13,3 +13,7 @@ $(document).ready(function(){
         }
     });
 });
+
+function checkPassword() {
+	return (Document.getElementById('password-form').value == Document.getElementById('password-form2'));
+}

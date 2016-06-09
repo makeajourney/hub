@@ -17,7 +17,7 @@
     <body>
         <div class="sign-container">
             <h1>Hub</h1>
-            <form action="login.do" method="post">
+            <form action="login.do" method="post" onsubmit="return checkPassword();">
                 <input type="text" id="id-form" name="id" class="input-form" placeholder="ID"/>
                 <input type="password" id="password-form" name="password" class="input-form" placeholder="Password"/>
                 <input type="password" id="password-form2" name="password2" class="input-form" placeholder="Retype the Password"/>
